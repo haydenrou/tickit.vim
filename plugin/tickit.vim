@@ -1,14 +1,20 @@
 let s:tickit_ticker = "x"
+let s:tickit_location = $HOME . "/.config/tickit.vim/TODO.md"
 
 function tickit#open_todo() abort
-        e TODO.md
+        if filereadable(s:tickit_location)
+                execute ":e " . s:tickit_location
+        else
+                e templates/hero
+                normal! gg
+                normal! yG
+                execute ":e " . s:tickit_location
+                normal! P
+                normal! G
+        endif
 endfunction
 
 function tickit#add_todo() abort
-        if expand('%:t') != 'TODO.md'
-                e TODO.md
-        endif
-
         execute "normal! o"
 
         let new_todo = "[ ] - "
@@ -17,19 +23,35 @@ function tickit#add_todo() abort
         execute "call feedkeys('A')"
 endfunction
 
-function tickit#check_todo() abort
-        normal! mm^
+function tickit#toggle_todo() abort
+        normal! kmm^j
 
         if search('\[ \]', 'ncpe', line('.')) == 1
-                execute join([".,.s/\\[ \\]/\\[", s:tickit_ticker, "\\]"], '')
+                :call tickit#mark_done()
         elseif search(join(['\[', s:tickit_ticker,'\]'], ''), 'ncpe', line('.')) == 1
                 execute join([".,.s/\\[", s:tickit_ticker, "\\]/\\[ \\]"], '')
         endif
+endfunction
+
+function tickit#mark_done() abort
+        normal! mt
+
+        execute join([".,.s/\\[ \\]/\\[", s:tickit_ticker, "\\]"], '')
+
+        if search('^# Done', 'ncpe') != 1
+                execute "normal! Go" . "\n# Done"
+                normal! `t
+        endif
+
+        normal! dd
+        normal! /# Done
+        /# Done
+        normal! p
 
         normal! `m
 endfunction
 
 nmap <Leader>otd :call tickit#open_todo()<CR>
-nmap <Leader>td :call tickit#check_todo()<CR>
+nmap <Leader>td :call tickit#toggle_todo()<CR>
 nmap <Leader>ntd :call tickit#add_todo()<CR>
 

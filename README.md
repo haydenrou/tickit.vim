@@ -5,13 +5,17 @@
 
 <br>
 
-##Installation
+![tickit.vim example](https://github.com/haydenrou/tickit.vim/screenshots/tickitvim.png?raw=true)
+
+<br>
+
+## Installation
 If you use [vim-plug](https://github.com/junegunn/vim-plug), you can add tickit.vim to your `init.vim` with the below line, and run `:PlugInstall` to get up and running.
 ```
 Plug 'haydenrou/tickit.vim'
 ```
 
-##Usage
+## Usage
 - Open your TODO.md file
     ```
     <Leader>otd
@@ -25,7 +29,7 @@ Plug 'haydenrou/tickit.vim'
     <Leader>td
     ```
 
-##Notes
+## Notes
 Please feel free to open up issues with bug reports or feature suggestions as you see fit.
 
 I encourage contributions or suggestions, and if you have anything else you want to work on together you can contact me by email: <hayden@rouille.dev>.
