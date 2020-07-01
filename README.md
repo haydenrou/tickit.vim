@@ -5,7 +5,7 @@
 
 <br>
 
-![tickit.vim example](https://github.com/haydenrou/tickit.vim/screenshots/tickitvim.png?raw=true)
+![tickit.vim example](https://github.com/haydenrou/tickit.vim/blob/master/screenshots/tickitvim.png?raw=true)
 
 <br>
 
