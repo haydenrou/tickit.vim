@@ -1,6 +1,6 @@
 <div align="center">
   <h1>tickit.vim</h1>
-  <strong>lightweight project wide TODO management</strong>
+  <strong>lightweight TODO management</strong>
 </div>
 
 <br>
@@ -16,6 +16,15 @@ Plug 'haydenrou/tickit.vim'
 ```
 
 ## Usage
+tickit.vim uses `$HOME/.config/tickit.vim/TODO.md` as a TODO file. If you want to change it, you can do so as per the below:
+```
+let g:tickit_location = $HOME . "/my_location/myfile.md"
+```
+You can also customise the "ticker". The default is "x"
+```
+let g:tickit_ticker = ":)"
+```
+
 - Open your TODO.md file
     ```
     <Leader>otd
