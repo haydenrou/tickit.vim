@@ -1,3 +1,6 @@
+let s:set_ticker = "x"
+let s:set_location = $HOME . "/.config/tickit.vim/TODO.md"
+
 function tickit#set_ticker(ticker, ...) abort
   let s:tickit_ticker = a:ticker
 endfunction
