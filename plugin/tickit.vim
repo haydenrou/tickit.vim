@@ -1,14 +1,19 @@
-let g:tickit_ticker = "x"
-let g:tickit_location = $HOME . "/.config/tickit.vim/TODO.md"
+function tickit#set_ticker(ticker, ...) abort
+  let s:tickit_ticker = a:ticker
+endfunction
+
+function tickit#set_location(location, ...) abort
+  let s:tickit_location = a:location
+endfunction
 
 function tickit#open_todo() abort
-        if filereadable(g:tickit_location)
-                execute ":e " . g:tickit_location
+        if filereadable(s:tickit_location)
+                execute ":e " . s:tickit_location
         else
                 e templates/hero
                 normal! gg
                 normal! yG
-                execute ":e " . g:tickit_location
+                execute ":e " . s:tickit_location
                 normal! P
                 normal! G
         endif
@@ -28,15 +33,15 @@ function tickit#toggle_todo() abort
 
         if search('\[ \]', 'ncpe', line('.')) == 1
                 :call tickit#mark_done()
-        elseif search(join(['\[', g:tickit_ticker,'\]'], ''), 'ncpe', line('.')) == 1
-                execute join([".,.s/\\[", g:tickit_ticker, "\\]/\\[ \\]"], '')
+        elseif search(join(['\[', s:tickit_ticker,'\]'], ''), 'ncpe', line('.')) == 1
+                execute join([".,.s/\\[", s:tickit_ticker, "\\]/\\[ \\]"], '')
         endif
 endfunction
 
 function tickit#mark_done() abort
         normal! mt
 
-        execute join([".,.s/\\[ \\]/\\[", g:tickit_ticker, "\\]"], '')
+        execute join([".,.s/\\[ \\]/\\[", s:tickit_ticker, "\\]"], '')
 
         if search('^# Done', 'ncpe') != 1
                 execute "normal! Go" . "\n# Done"
@@ -50,6 +55,9 @@ function tickit#mark_done() abort
 
         normal! `m
 endfunction
+
+call tickit#set_ticker("x")
+call tickit#set_location($HOME . "/.config/tickit.vim/TODO.md")
 
 nmap <Leader>otd :call tickit#open_todo()<CR>
 nmap <Leader>td :call tickit#toggle_todo()<CR>

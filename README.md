@@ -11,30 +11,30 @@
 
 ## Installation
 If you use [vim-plug](https://github.com/junegunn/vim-plug), you can add tickit.vim to your `init.vim` with the below line, and run `:PlugInstall` to get up and running.
-```
+```vim
 Plug 'haydenrou/tickit.vim'
 ```
 
 ## Usage
 tickit.vim uses `$HOME/.config/tickit.vim/TODO.md` as a TODO file. If you want to change it, you can do so as per the below:
-```
-let g:tickit_location = $HOME . "/my_location/myfile.md"
+```vim
+call tickit#set_location($HOME . "/.config/tickit.vim/TODO.md")
 ```
 You can also customise the "ticker". The default is "x"
-```
-let g:tickit_ticker = ":)"
+```vim
+call tickit#set_ticker(":)")
 ```
 
 - Open your TODO.md file
-    ```
+    ```vim
     <Leader>otd
     ```
 - Create a new todo
-    ```
+    ```vim
     <Leader>ntd
     ```
 - Toggle todo
-    ```
+    ```vim
     <Leader>td
     ```
 
