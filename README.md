@@ -24,6 +24,10 @@ You can also customise the "ticker". The default is "x"
 ```vim
 call tickit#set_ticker(":)")
 ```
+If you do not want the date to show in the done column, set the below
+```vim
+call tickit#show_date("false")
+```
 
 - Open your TODO.md file
     ```vim

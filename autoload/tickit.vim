@@ -1,12 +1,17 @@
 let s:tickit_ticker = "x"
 let s:tickit_location = $HOME . "/.config/tickit.vim/TODO.md"
+let s:show_date = "true"
 
 function tickit#set_ticker(ticker, ...) abort
-  let s:tickit_ticker = a:ticker
+        let s:tickit_ticker = a:ticker
 endfunction
 
 function tickit#set_location(location, ...) abort
-  let s:tickit_location = a:location
+        let s:tickit_location = a:location
+endfunction
+
+function tickit#show_date(val, ...) abort
+        let s:show_date = a:val
 endfunction
 
 function tickit#open_todo() abort
@@ -52,9 +57,12 @@ function tickit#mark_done() abort
         endif
 
         normal! dd
-        normal! /# Done
         /# Done
         normal! p
+
+        if s:show_date == "true"
+                execute "normal! i(" . strftime("%d-%m-%Y %H:%M") . ") "
+        endif
 
         normal! `m
 endfunction
