@@ -1,6 +1,7 @@
 let s:tickit_ticker = "x"
 let s:tickit_location = $HOME . "/.config/tickit.vim/TODO.md"
 let s:show_date = "true"
+let s:plugin_path = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 
 function tickit#set_ticker(ticker, ...) abort
         let s:tickit_ticker = a:ticker
@@ -16,12 +17,12 @@ endfunction
 
 function tickit#open_todo() abort
         if filereadable(s:tickit_location)
-                execute ":e " . s:tickit_location
+                execute ':e ' . s:tickit_location
         else
-                e templates/hero
+                execute ':e ' . s:plugin_path . '/templates/hero'
                 normal! gg
                 normal! yG
-                execute ":e " . s:tickit_location
+                execute ':e ' . s:tickit_location
                 normal! P
                 normal! G
         endif
